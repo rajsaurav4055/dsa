@@ -6,7 +6,7 @@
 // 1.  First, start with the construction of a heap by adjusting the array elements.
 // 2. Once the heap is created repeatedly eliminate the root element of the heap by shifting it to the end of the array and then store the heap structure with remaining elements.
 
-
+package Heaps;
 public class HeapSort{
 
     //Function to sort the array using heap sort
