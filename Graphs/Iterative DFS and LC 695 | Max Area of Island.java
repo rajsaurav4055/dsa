@@ -123,8 +123,8 @@ class maxAreaOfIslandSolution {
         }
         return maxArea;
     }
-    //TC: O(n*m)
-    //SC: O(n*m) -> The space used by stack
+    //TC: O(m*n)
+    //SC: O(m*n) -> The space used by stack
 }
 
 //Takeaways
