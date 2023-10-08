@@ -1,51 +1,40 @@
-    //Dijkstra Algorithm -> Shortest path problem
 
-    // Bellman Ford ALgorithm
+
+// Bellman Ford ALgorithm -> Shortest path problem for directed edges and also negative edges but in this question we don't need to deal with negative edges
 // Time Complexty (n * t) | Space Complexity O(n) where t is the length of times
-class NetworkDelayTimeSolution {
-
+class Solution {
     public int networkDelayTime(int[][] times, int n, int k) {
-        // initialize an array with max value of size n
-        int[] paths = new int[n];
-        Arrays.fill(paths, Integer.MAX_VALUE);
+        //Initialize dist array and fill it with infinity apart from the src
+        int[] dist=new int[n];
+        Arrays.fill(dist,Integer.MAX_VALUE);
+        dist[k-1]=0;
 
-        paths[k - 1] = 0;
+        //Relax all the edges n-1 times where n is the number of nodes
+        for(int i=1;i < n; i++){
+            int[] temp= new int[n];
+            temp=Arrays.copyOf(dist,dist.length);
 
-        for (int i = 0; i < n; i++) {
-            // make a copy of paths
-            int[] temp = new int[n];
-            temp = Arrays.copyOf(paths, paths.length);
-
-            // loop through times
-            for (int j = 0; j < times.length; j++) {
-                int src = times[j][0]; // source
-                int tgt = times[j][1]; // target
-                int time = times[j][2]; // time
-
-                if (
-                    temp[src - 1] != Integer.MAX_VALUE &&
-                    temp[src - 1] + time < temp[tgt - 1]
-                ) {
-                    temp[tgt - 1] = temp[src - 1] + time;
+            for(int j=0; j<times.length; j++){
+                int src= times[j][0];
+                int dest= times[j][1];
+                int time= times[j][2];
+                if(temp[src - 1]!=Integer.MAX_VALUE && temp[dest - 1]>temp[src - 1]+time){
+                    temp[dest - 1]= temp[src - 1] + time;
                 }
             }
-
-            // set paths to temp
-            paths = temp;
+            dist = temp;
         }
 
-        int result = Integer.MIN_VALUE;
-
-        // calculate max value
-        for (int i = 0; i < n; i++) {
-            if (paths[i] == Integer.MAX_VALUE) {
+        //calculating the minimum time
+        int minTime=Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            if(dist[i]==Integer.MAX_VALUE){
                 return -1;
             }
-            result = Math.max(result, paths[i]);
+            minTime= Math.max(dist[i],minTime);
         }
+        return minTime;
 
-        // return result
-        return result;
     }
 }
 

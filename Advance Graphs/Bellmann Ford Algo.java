@@ -1,3 +1,4 @@
+//Priority Queue is not used for Bellmann Ford, that is why it is a bit inefficient than Dijkstra but Dijkstra can't be used for negative edges or directed edges
 
 //https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/
 //A Bellman-Ford algorithm is also guaranteed to find the shortest path in a graph, similar to Dijkstra’s algorithm. 
