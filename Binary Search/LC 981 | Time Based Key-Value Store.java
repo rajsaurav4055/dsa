@@ -23,9 +23,9 @@ class TimeMap {
         int end=list.size()-1;
         int tempts=0;
         while(start < end){
-            int mid= (start + end + 1)/2; //this logic is really important so that it is  biased to the right for even numbers and prevents infinite loop
+            int mid= (start + end + 1)/2; //this logic (adding 1 at the end) is really important so that it is  biased to the right for even numbers and prevents infinite loop
             if(list.get(mid).getValue() <=timestamp){
-                start=mid;
+                start=mid; //notice start ko mid se equate kiye mid + 1 se ni
             }else{
                 end= mid - 1;
             } 
