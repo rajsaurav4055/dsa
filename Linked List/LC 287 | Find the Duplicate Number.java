@@ -1,28 +1,23 @@
-//Fast and slow pointer approach
-// Time Complexity: O(n)
-// Space Complexity: O(1)
-
 class Solution {
     public int findDuplicate(int[] nums) {
-        int slow = 0;
-        int fast = 0;
-
+        
+        // Find the intersection point of the two runners.
+        int tortoise = nums[0];
+        int hare = nums[0];
+        
         do {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+
+        // Find the "entrance" to the cycle.
+        tortoise = nums[0];
+        
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
         }
 
-        while (slow != fast);
-
-        int slow2 = 0;
-
-        do {
-            slow = nums[slow];
-            slow2 = nums[slow2];
-        }
-
-        while (slow != slow2);
-
-        return slow2;
+        return hare;
     }
 }
