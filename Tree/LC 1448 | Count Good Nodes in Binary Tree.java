@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+//Solved myself
 class Solution {
     public int goodNodes(TreeNode root) {
         if(root==null)return 0;
@@ -30,3 +32,5 @@ class Solution {
 
     }
 }
+//TC: O(n)
+//SC: O(1)
