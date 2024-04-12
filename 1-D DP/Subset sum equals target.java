@@ -4,7 +4,7 @@ import java.util.* ;
 import java.io.*; 
 
 
-//Question link:https://www.naukri.com/code360/problems/subset-sum-equal-to-k_1550954?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM
+//Question link:https://www.naukri.com/code360/problems/subset-sum-equal-to-k_1550954?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM 
 //Memoization
 public class Solution {
     public static boolean subsetSumToK(int n, int k, int arr[]){

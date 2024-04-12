@@ -1,6 +1,7 @@
 package 3D DP;
 
 //Memoization
+//We are also moving both robots together so both of them will reach the destination at the same time
 class Solution {
     public int cherryPickup(int[][] grid) {
         int r= grid.length;
@@ -28,6 +29,9 @@ class Solution {
         } 
         if(dp[i][j1][j2]!= -1)return dp[i][j1][j2];
         int maxi= -(int)Math.pow(10,8);
+        //Only j changes, i will always be i+1
+        //So for each j1-1, j2 can be j2-1, j2 and j2+1-> So that is what we are trying to achieve from this for nested loops
+        //Very interesting approach
         for(int k=-1; k<=1; k++){
             for(int l=-1; l<=1; l++){
                 if(j1==j2)maxi=Math.max(maxi, grid[i][j1] + cherryPickUtil(grid, i+1, j1+k, j2+l, r, c, dp));
@@ -35,10 +39,9 @@ class Solution {
             }
         }
         return dp[i][j1][j2] = maxi;
-
-
-
     }
 }
+//TC: Number of states which is O(N*M*M)
+//SC: Recursion stack + dp matrix space => O(n) + O(m*n*n)
 
-
+//To remove the recursion stack space
