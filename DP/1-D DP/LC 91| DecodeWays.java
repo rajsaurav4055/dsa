@@ -1,3 +1,91 @@
+//More intuitive
+//Recursive
+
+class Solution {
+    public int numDecodings(String s) {
+        return f(0, s);
+    }
+
+    public int f(int index, String s){
+        
+        //Base cases
+
+        //if out of bound
+        if(index== s.length())return 1;
+
+        if(s.charAt(index)=='0')return 0;//because we can't start with zero
+
+        //if last index pr hai
+        if(index==s.length() - 1)return 1;
+        
+        //if we decode current index to wo to 1 hai and move 1 further
+        int takeSingleDigit= f(index+1, s);
+        int takeDoubleDigits=0;
+        if(Integer.parseInt(s.substring(index, index+2)) <= 26){
+            //if we decode current+next index, then we move 2 further
+            takeDoubleDigits= f(index+2, s);
+        }
+        return takeSingleDigit + takeDoubleDigits;
+    }
+}
+//Time: O(exponential)
+
+
+//Memoize
+class Solution {
+    public int numDecodings(String s) {
+        int[] dp=new int[s.length()];
+        Arrays.fill(dp,-1);
+        return f(0, s, dp);
+    }
+
+    public int f(int index, String s, int[] dp){
+        
+        //Base cases
+
+        //if out of bound
+        if(index== s.length())return 1;
+
+        if(s.charAt(index)=='0')return 0;//because we can't start with zero
+
+        //if last index pr hai
+        if(index==s.length() - 1)return 1;
+
+        if(dp[index]!=-1)return dp[index];
+        
+        //if we decode current index to wo to 1 hai and move 1 further
+        int takeSingleDigit= f(index+1, s, dp);
+        int takeDoubleDigits=0;
+        if(Integer.parseInt(s.substring(index, index+2)) <= 26){
+            //if we decode current+next index, then we move 2 further
+            takeDoubleDigits= f(index+2, s, dp);
+        }
+        return dp[index]= takeSingleDigit + takeDoubleDigits;
+    }
+}
+//TC: O(n)
+//SC: O(n) + O(n)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //top down with memoization
 //last position se count krta hai and backward memo wale array ko fill krte jata hai
 //slightly non intuitve to me
